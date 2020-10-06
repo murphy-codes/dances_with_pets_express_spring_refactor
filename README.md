@@ -1,4 +1,5 @@
-# Launch Academy - Week 17 Java Spring Express Refactor Solo Project
+# Launch Academy - Week 17
+## Java Spring Express Refactor Solo Project
 
 We are ready to integrate a React front end with our Spring back end.
 
