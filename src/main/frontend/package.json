@@ -9,8 +9,8 @@
     "dev:client": "node_modules/.bin/webpack-dev-server --host 0.0.0.0",
     "webpack": "node_modules/.bin/webpack --config ./webpack.config.js",
     "test": "./node_modules/.bin/jest",
-    "db:import": "psql pets < db/schema.sql",
-    "db:seed": "psql pets < db/seed.sql"
+    "db:import": "psql adopt_a_pet < db/schema.sql",
+    "db:seed": "psql adopt_a_pet < db/seed.sql"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
@@ -29,7 +29,7 @@
     "json-loader": "^0.5.4",
     "json2csv": "^4.4.1",
     "lodash": "^4.17.11",
-    "morgan": "~1.10.1",
+    "morgan": "^1.9.1",
     "node-sass": "^4.12.0",
     "pg": "^8.3.0",
     "react": "~16.8.0",
