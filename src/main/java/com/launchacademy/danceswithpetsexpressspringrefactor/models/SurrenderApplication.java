@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -86,6 +87,7 @@ public class SurrenderApplication {
 
   @ManyToOne
   @JoinColumn(name="pet_type_id", nullable = false)
+  @JsonIgnoreProperties
   private PetType petType;
 
   public void setPetType(PetType petType) { this.petType = petType; }
