@@ -72,7 +72,7 @@ public class Pet {
 
   @ManyToOne
   @JoinColumn(name="pet_type_id", nullable = false)
-  @JsonIgnoreProperties
+  @JsonIgnoreProperties("pets")
   private PetType petType;
 
   public void setPetType(PetType petType) { this.petType = petType; }
