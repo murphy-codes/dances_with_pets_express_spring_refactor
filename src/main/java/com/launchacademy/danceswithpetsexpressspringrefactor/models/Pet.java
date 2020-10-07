@@ -78,6 +78,6 @@ public class Pet {
   public void setPetType(PetType petType) { this.petType = petType; }
 
   @OneToMany(mappedBy = "pet")
-  @JsonIgnoreProperties
+  @JsonIgnoreProperties("pet")
   private List<AdoptionApplication> adoptionApplications = new ArrayList<>();
 }
