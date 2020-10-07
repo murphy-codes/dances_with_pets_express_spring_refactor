@@ -17,6 +17,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,7 +44,7 @@ public class Pet {
 
   @NotNull(message = "Please input a url for this pet's photo")
   @NotBlank(message = "Photo URLs cannot be blank")
-  @URL(message = "The photo URL must be a valid URL")
+//  @URL(message = "The photo URL must be a valid URL")
   @Column(name="pet_img_url", nullable=false)
   private String petImgUrl;
 
@@ -70,13 +72,12 @@ public class Pet {
 
   @ManyToOne
   @JoinColumn(name="pet_type_id", nullable = false)
+  @JsonIgnoreProperties
   private PetType petType;
 
   public void setPetType(PetType petType) { this.petType = petType; }
 
   @OneToMany(mappedBy = "pet")
-  private List<SurrenderApplication> surrenderApplications = new ArrayList<>();
-
-  @OneToMany(mappedBy = "pet")
+  @JsonIgnoreProperties
   private List<AdoptionApplication> adoptionApplications = new ArrayList<>();
 }
