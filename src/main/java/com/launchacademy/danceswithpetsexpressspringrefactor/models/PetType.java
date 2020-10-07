@@ -58,11 +58,11 @@ public class PetType {
   @Column(name="description")
   private String description;
 
-  @JsonIgnoreProperties
+  @JsonIgnoreProperties("petType")
   @OneToMany(mappedBy = "petType")
   private List<Pet> pets = new ArrayList<>();
 
-  @JsonIgnoreProperties
+  @JsonIgnoreProperties("petType")
   @OneToMany(mappedBy = "petType")
   private List<SurrenderApplication> surrenderApplications = new ArrayList<>();
 }
