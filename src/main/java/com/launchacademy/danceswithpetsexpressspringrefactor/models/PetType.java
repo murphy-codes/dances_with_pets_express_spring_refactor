@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -50,13 +51,18 @@ public class PetType {
 
   @NotNull(message = "Please input a url for this breed's photo")
   @NotBlank(message = "Photo URLs cannot be blank")
-  @URL(message = "The photo URL must be a valid URL")
+//  @URL(message = "The photo URL must be a valid URL")
   @Column(name="breed_img_url", nullable=false)
   private String breedImgUrl;
 
   @Column(name="description")
   private String description;
 
-  @OneToMany(mappedBy = "pet_type")
+  @JsonIgnoreProperties
+  @OneToMany(mappedBy = "petType")
   private List<Pet> pets = new ArrayList<>();
+
+  @JsonIgnoreProperties
+  @OneToMany(mappedBy = "petType")
+  private List<SurrenderApplication> surrenderApplications = new ArrayList<>();
 }
