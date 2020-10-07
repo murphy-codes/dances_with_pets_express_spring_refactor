@@ -87,7 +87,7 @@ public class SurrenderApplication {
 
   @ManyToOne
   @JoinColumn(name="pet_type_id", nullable = false)
-  @JsonIgnoreProperties
+  @JsonIgnoreProperties("surrenderApplications")
   private PetType petType;
 
   public void setPetType(PetType petType) { this.petType = petType; }
