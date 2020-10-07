@@ -57,7 +57,7 @@ public class SurrenderApplication {
 
   @NotNull(message = "Please input a url for this pet's photo")
   @NotBlank(message = "Photo URLs cannot be blank")
-  @URL(message = "The photo URL must be a valid URL")
+//  @URL(message = "The photo URL must be a valid URL")
   @Column(name="pet_img_url", nullable=false)
   private String petImgUrl;
 
