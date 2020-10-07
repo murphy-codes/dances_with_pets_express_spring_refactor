@@ -3,7 +3,7 @@ import { Switch, Route, Link } from "react-router-dom"
 import Error404 from "./Error404"
 import PetIndexContainer from "./PetIndexContainer"
 import GroupingIndexContainer from "./GroupingIndexContainer"
-import PetTypeIndexContainer from "./PetTypeIndexContainer"
+// import PetTypeIndexContainer from "./PetTypeIndexContainer"
 import FormsContainer from "./FormsContainer"
 import PetShowContainer  from "./PetShowContainer"
 
@@ -34,7 +34,7 @@ const NavBar = props => {
             </li>
             <li className="vr-left">
               <div className="dropdown">
-                <Link to="#" className="nav-drop">Pets-OLDDDD</Link>
+                <Link to="#" className="nav-drop">Pets-OLD</Link>
                 <div className="dropdown-content">
                   <Link to="/api/v1/pets">Current API</Link>
                   <Link to="/api/v1/past-pets">Past API</Link>
@@ -59,13 +59,14 @@ const NavBar = props => {
         </div>
       </div>
       <Switch>
+        <Route exact path="/" component={PetIndexContainer} />
         <Route exact path="/pets" component={PetIndexContainer} />
         <Route exact path="/pets/:name" component={PetShowContainer} />
         <Route exact path="/past-pets" component={PetIndexContainer} />
         <Route exact path="/classification/:classification" component={PetIndexContainer} />
         <Route exact path="/type/:type" component={PetIndexContainer} />
         <Route exact path="/breed/:breed" component={PetIndexContainer} />
-        <Route exact path="/employees" component={PetTypeIndexContainer} />
+        <Route exact path="/employees" component={PetIndexContainer} />
         <Route exact path="/grouping" component={GroupingIndexContainer} />
         <Route exact path="/grouping/:type" component={GroupingIndexContainer} />
         <Route exact path="/adopt" render={() => <FormsContainer form={"adoption"} />} />
