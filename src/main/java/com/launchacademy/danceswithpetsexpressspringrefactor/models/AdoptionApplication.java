@@ -67,7 +67,7 @@ public class AdoptionApplication {
 
   @ManyToOne
   @JoinColumn(name="pet_id", nullable = false)
-  @JsonIgnoreProperties
+  @JsonIgnoreProperties("adoptionApplications")
   private Pet pet;
 
   public void setPet(Pet pet) { this.pet = pet; }
