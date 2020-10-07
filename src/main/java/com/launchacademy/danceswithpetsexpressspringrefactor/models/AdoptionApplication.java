@@ -16,11 +16,11 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
-
 import javax.validation.constraints.Email;
 
 @Entity
@@ -67,6 +67,7 @@ public class AdoptionApplication {
 
   @ManyToOne
   @JoinColumn(name="pet_id", nullable = false)
+  @JsonIgnoreProperties
   private Pet pet;
 
   public void setPet(Pet pet) { this.pet = pet; }
