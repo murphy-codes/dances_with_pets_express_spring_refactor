@@ -2,16 +2,13 @@ package com.launchacademy.danceswithpetsexpressspringrefactor.seeders;
 
 import com.launchacademy.danceswithpetsexpressspringrefactor.models.PetType;
 import com.launchacademy.danceswithpetsexpressspringrefactor.repositories.PetTypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 
 @Component
 public class PetTypeSeeder {
-  @Autowired private PetTypeRepository petTypeRepository;
-
-  public void seed() {
+  public void seed(PetTypeRepository petTypeRepository) {
 //    List<String> classificationTypeList = Arrays.asList("domesticated","exotic","mythical");
 //    List<String> classificationList = Arrays.asList(classificationTypeList.get(0),classificationTypeList.get(0),classificationTypeList.get(0),classificationTypeList.get(0),classificationTypeList.get(0),classificationTypeList.get(1),classificationTypeList.get(1),classificationTypeList.get(2),classificationTypeList.get(2),classificationTypeList.get(2));
     List<String> classificationList = Arrays.asList("domesticated","domesticated","domesticated","domesticated","domesticated","exotic","exotic","mythical","mythical","mythical");
