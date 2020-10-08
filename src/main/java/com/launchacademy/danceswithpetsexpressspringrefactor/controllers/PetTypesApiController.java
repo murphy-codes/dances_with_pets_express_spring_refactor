@@ -1,6 +1,8 @@
 package com.launchacademy.danceswithpetsexpressspringrefactor.controllers;
 
+import com.launchacademy.danceswithpetsexpressspringrefactor.models.Pet;
 import com.launchacademy.danceswithpetsexpressspringrefactor.models.PetType;
+import com.launchacademy.danceswithpetsexpressspringrefactor.repositories.PetRepository;
 import com.launchacademy.danceswithpetsexpressspringrefactor.repositories.PetTypeRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/pet-types")
+@RequestMapping("/api/v1")
 public class PetTypesApiController {
+  @Autowired private PetRepository petRepository;
   @Autowired private PetTypeRepository petTypeRepository;
 
-  @GetMapping
-  public Page<PetType> getPetTypes(Pageable pageable) { return petTypeRepository.findAll(pageable); }
+  @GetMapping("/grouping/{type}")
+  public Page<PetType> getPetTypes(@PathVariable String type, Pageable pageable) {
+    if(type.equals("classification")) { return petTypeRepository.getClassifications(pageable); }
+    else if(type.equals("type")) { return petTypeRepository.getTypes(pageable); }
+    else if(type.equals("breed")) { return petTypeRepository.getBreeds(pageable); }
+    else {throw new PetTypesApiController.PetTypeNotFoundException();}
+  }
 
   @NoArgsConstructor
   private class PetTypeNotFoundException extends RuntimeException {};

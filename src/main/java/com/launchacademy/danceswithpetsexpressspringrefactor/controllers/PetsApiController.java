@@ -1,6 +1,7 @@
 package com.launchacademy.danceswithpetsexpressspringrefactor.controllers;
 
 import com.launchacademy.danceswithpetsexpressspringrefactor.models.Pet;
+import com.launchacademy.danceswithpetsexpressspringrefactor.models.PetType;
 import com.launchacademy.danceswithpetsexpressspringrefactor.repositories.PetRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,24 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/pets")
+@RequestMapping("/api/v1")
 public class PetsApiController {
   @Autowired private PetRepository petRepository;
 
-  @GetMapping
-  public Page<Pet> getPets(Pageable pageable) { return petRepository.findAll(pageable); }
+  @GetMapping("/pets")
+  public Page<Pet> getPets(Pageable pageable) { return petRepository.findByAdoptionStatusFalse(pageable); }
+
+  @GetMapping("/past-pets")
+  public Page<Pet> getPastPets(Pageable pageable) { return petRepository.findByAdoptionStatusTrue(pageable); }
+
+  @GetMapping("/classification/{grouping}")
+  public Page<Pet> getPetsByClassification(@PathVariable String grouping, Pageable pageable) { return petRepository.getByClassification(grouping, pageable); }
+
+  @GetMapping("/type/{grouping}")
+  public Page<Pet> getPetsByTypes(@PathVariable String grouping, Pageable pageable) { return petRepository.getByType(grouping, pageable); }
+
+  @GetMapping("/breed/{grouping}")
+  public Page<Pet> getPetsByBreed(@PathVariable String grouping, Pageable pageable) { return petRepository.getByBreed(grouping, pageable); }
 
   @NoArgsConstructor
   private class PetNotFoundException extends RuntimeException {};
@@ -38,9 +51,9 @@ public class PetsApiController {
     String petNotFoundHandler(PetNotFoundException ex) { return ex.getMessage(); }
   }
 
-  @GetMapping("/{id}")
-  public Pet getPetById(@PathVariable Integer id) { return petRepository.findById(id).orElseThrow(() -> new PetNotFoundException()); }
+  @GetMapping("/pets/{petName}")
+  public Pet getPetById(@PathVariable String petName) { return petRepository.findByName(petName).orElseThrow(() -> new PetNotFoundException()); }
 
-  @PostMapping
+  @PostMapping("/pets")
   public Pet createPet(@PathVariable Pet pet) { return petRepository.save(pet); }
 }
