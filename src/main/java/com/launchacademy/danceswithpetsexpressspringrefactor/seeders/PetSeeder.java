@@ -5,17 +5,13 @@ import com.launchacademy.danceswithpetsexpressspringrefactor.models.Pet;
 import com.launchacademy.danceswithpetsexpressspringrefactor.models.PetType;
 import com.launchacademy.danceswithpetsexpressspringrefactor.repositories.PetRepository;
 import com.launchacademy.danceswithpetsexpressspringrefactor.repositories.PetTypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 
 @Component
 public class PetSeeder {
-  @Autowired private PetTypeRepository petTypeRepository;
-  @Autowired private PetRepository petRepository;
-
-  public void seed() {
+  public void seed(PetTypeRepository petTypeRepository, PetRepository petRepository) {
     List<String> nameList = Arrays.asList("Fiona","Midnight","Mimosa","Merlot","Shadow","Cooper","Felix","Pon Rerlman");
     List<String> petImgUrlList = Arrays.asList("/img/pets/Fiona_01_450x600.png","/img/pets/Midnight_01_450x600.jpg","/img/pets/Mimosa_01_450x600.jpg","/img/pets/Merlot_01_450x600.jpg","/img/pets/Shadow_01_450x600.jpg","/img/pets/Cooper_01_450x600.jpg","/img/pets/Felix_01_450x600.jpg","/img/pets/Pon-Rerlman_01_450x600.jpg");
     List<String> ageList = Arrays.asList("12|2","20|0","1|4","2|3","1|10","0|4","1185|11","421|0");
